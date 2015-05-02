@@ -98,6 +98,28 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="GXB-YT-L1j">
+                                                            <rect key="frame" x="33" y="52" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="4Ko-4P-ngN"/>
+                                                                <constraint firstAttribute="height" constant="25" id="bZR-Lp-Wjq"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                            <state key="normal" title="Retweet">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Utd-CH-nz4">
+                                                            <rect key="frame" x="66" y="52" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="YNz-Yl-qgc"/>
+                                                                <constraint firstAttribute="height" constant="25" id="svF-oW-0Ib"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                            <state key="normal" title="Favorite">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                        </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="I can't be the only a bit upset about the new Hallmark Channel lineup. " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO5-d8-5Tz">
                                                             <rect key="frame" x="1" y="16" width="240" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -108,15 +130,19 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="gO5-d8-5Tz" firstAttribute="top" secondItem="xlX-f7-XQ0" secondAttribute="bottom" constant="1" id="0vr-Pt-uOc"/>
+                                                        <constraint firstItem="Utd-CH-nz4" firstAttribute="top" secondItem="gO5-d8-5Tz" secondAttribute="bottom" constant="4" id="281-MI-rha"/>
                                                         <constraint firstAttribute="trailing" secondItem="kBq-xD-73B" secondAttribute="trailing" id="4fj-Sp-j7d"/>
                                                         <constraint firstItem="xlX-f7-XQ0" firstAttribute="top" secondItem="WMh-Q2-agw" secondAttribute="top" id="4uF-9E-yaO"/>
                                                         <constraint firstAttribute="trailing" secondItem="gO5-d8-5Tz" secondAttribute="trailing" constant="5" id="7Is-h6-fad"/>
                                                         <constraint firstItem="gO5-d8-5Tz" firstAttribute="leading" secondItem="WMh-Q2-agw" secondAttribute="leading" constant="1" id="ExH-21-Omh"/>
                                                         <constraint firstItem="gi5-NA-NaB" firstAttribute="leading" secondItem="WMh-Q2-agw" secondAttribute="leading" id="IsU-pF-x0U"/>
                                                         <constraint firstAttribute="bottom" secondItem="gi5-NA-NaB" secondAttribute="bottom" constant="-5" id="M2y-Ik-E5V"/>
+                                                        <constraint firstItem="GXB-YT-L1j" firstAttribute="top" secondItem="gO5-d8-5Tz" secondAttribute="bottom" constant="4" id="QHh-xU-hR1"/>
                                                         <constraint firstItem="gi5-NA-NaB" firstAttribute="top" secondItem="gO5-d8-5Tz" secondAttribute="bottom" constant="4" id="RkH-vV-ZWu"/>
+                                                        <constraint firstItem="Utd-CH-nz4" firstAttribute="leading" secondItem="GXB-YT-L1j" secondAttribute="trailing" constant="8" id="V5y-ls-Rx4"/>
                                                         <constraint firstItem="UNg-uf-Qdm" firstAttribute="leading" secondItem="xlX-f7-XQ0" secondAttribute="trailing" constant="6" id="VMw-5r-FN8"/>
                                                         <constraint firstItem="xlX-f7-XQ0" firstAttribute="leading" secondItem="WMh-Q2-agw" secondAttribute="leading" id="Z3h-q3-tJl"/>
+                                                        <constraint firstItem="GXB-YT-L1j" firstAttribute="leading" secondItem="gi5-NA-NaB" secondAttribute="trailing" constant="8" id="eta-IQ-UTc"/>
                                                         <constraint firstItem="kBq-xD-73B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UNg-uf-Qdm" secondAttribute="trailing" constant="10" id="fFw-xh-zWR"/>
                                                         <constraint firstItem="kBq-xD-73B" firstAttribute="top" secondItem="WMh-Q2-agw" secondAttribute="top" id="nJG-Uu-RFq"/>
                                                         <constraint firstItem="UNg-uf-Qdm" firstAttribute="top" secondItem="WMh-Q2-agw" secondAttribute="top" id="ovf-sc-BYU"/>
@@ -139,10 +165,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="Utd-CH-nz4" id="FyS-Q7-Gwa"/>
                                             <outlet property="messageLabel" destination="gO5-d8-5Tz" id="aQK-qW-7XG"/>
                                             <outlet property="nameLabel" destination="xlX-f7-XQ0" id="HJM-Ra-PhR"/>
                                             <outlet property="pictureView" destination="HlO-Su-WsS" id="fAR-5F-DCT"/>
                                             <outlet property="replyButton" destination="gi5-NA-NaB" id="gew-H7-U4B"/>
+                                            <outlet property="retweetButton" destination="GXB-YT-L1j" id="ccI-VT-KxQ"/>
                                             <outlet property="retweetLabel" destination="oj5-h9-o67" id="25L-pS-JPx"/>
                                             <outlet property="timeLabel" destination="kBq-xD-73B" id="aHW-oY-P6F"/>
                                             <outlet property="usernameLabel" destination="UNg-uf-Qdm" id="nQj-ft-lhl"/>

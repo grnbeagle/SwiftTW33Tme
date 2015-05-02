@@ -11,6 +11,8 @@ import UIKit
 class TweetCell: UITableViewCell {
 
     static let replyIcon = UIImage(named: "Reply")
+    static let retweetIcon = UIImage(named: "Retweet")
+    static let favoriteIcon = UIImage(named: "Favorite")
 
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var retweetLabel: UILabel!
@@ -20,6 +22,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
 
     @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
 
     var didSetupConstraints = false
 
@@ -35,9 +39,15 @@ class TweetCell: UITableViewCell {
         usernameLabel.textColor = UIColor.tweetmeGrayColor()
         timeLabel.textColor = UIColor.tweetmeGrayColor()
 
-        //replyButton.setTitle("", forState: UIControlState.Normal)
+        var buttonSpacing = UIEdgeInsetsMake(6, 6, 6, 6)
         replyButton.setImage(TweetCell.replyIcon, forState: UIControlState.Normal)
-        replyButton.imageEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6)
+        replyButton.imageEdgeInsets = buttonSpacing
+
+        retweetButton.setImage(TweetCell.retweetIcon, forState: UIControlState.Normal)
+        retweetButton.imageEdgeInsets = buttonSpacing
+
+        favoriteButton.setImage(TweetCell.favoriteIcon, forState: UIControlState.Normal)
+        favoriteButton.imageEdgeInsets = buttonSpacing
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
