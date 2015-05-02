@@ -193,6 +193,11 @@
                                 <action selector="onLogout:" destination="RqI-LM-Av6" id="FhD-5g-sRb"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Compose" id="Fz7-Ty-hqW">
+                            <connections>
+                                <segue destination="W7k-5c-S1a" kind="modal" modalTransitionStyle="coverVertical" id="fFV-KN-xcZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ju6-gx-tiZ" id="QBX-px-2RY"/>
@@ -201,6 +206,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZY-mE-fcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1127" y="510"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="q2U-6r-Loi">
+            <objects>
+                <viewController id="PxC-eM-GFR" customClass="ComposeViewController" customModule="SwiftTW33Tme" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gZw-6w-EWf"/>
+                        <viewControllerLayoutGuide type="bottom" id="DWY-Li-Wl2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kcH-tI-1eV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P7S-hk-Bry">
+                                <rect key="frame" x="0.0" y="139" width="320" height="148"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUb-CK-zhJ">
+                                <rect key="frame" x="63" y="82" width="241" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@screename" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlE-RA-SiB">
+                                <rect key="frame" x="63" y="100" width="98" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltw-4l-AOm">
+                                <rect key="frame" x="7" y="81" width="50" height="50"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ExX-HF-bws">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="8eQ-KU-fB8">
+                            <connections>
+                                <action selector="onClose:" destination="PxC-eM-GFR" id="wNj-wU-Egg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EZm-ua-UYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2068" y="508"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RQh-Si-rlL">
@@ -219,6 +273,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEP-R3-Ye5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="595" y="510"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tDA-Pe-5j0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W7k-5c-S1a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ax3-xS-JGD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PxC-eM-GFR" kind="relationship" relationship="rootViewController" id="Jpd-vw-nnZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eag-t6-L5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1536" y="508"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
