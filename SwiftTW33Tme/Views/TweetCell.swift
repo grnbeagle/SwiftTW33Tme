@@ -10,12 +10,16 @@ import UIKit
 
 class TweetCell: UITableViewCell {
 
+    static let replyIcon = UIImage(named: "Reply")
+
     @IBOutlet weak var pictureView: UIImageView!
     @IBOutlet weak var retweetLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
+
+    @IBOutlet weak var replyButton: UIButton!
 
     var didSetupConstraints = false
 
@@ -30,6 +34,10 @@ class TweetCell: UITableViewCell {
 
         usernameLabel.textColor = UIColor.tweetmeGrayColor()
         timeLabel.textColor = UIColor.tweetmeGrayColor()
+
+        //replyButton.setTitle("", forState: UIControlState.Normal)
+        replyButton.setImage(TweetCell.replyIcon, forState: UIControlState.Normal)
+        replyButton.imageEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

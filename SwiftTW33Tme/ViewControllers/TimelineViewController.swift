@@ -13,6 +13,7 @@ class TimelineViewController: UIViewController {
     var tweets: [Tweet]?
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var replyButton: UIButton!
 
     var refreshControl = UIRefreshControl()
 

@@ -69,13 +69,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMh-Q2-agw" userLabel="Container">
                                                     <rect key="frame" x="66" y="30" width="246" height="72"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="gi5-NA-NaB">
-                                                            <rect key="frame" x="1" y="52" width="20" height="20"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="gi5-NA-NaB">
+                                                            <rect key="frame" x="0.0" y="52" width="25" height="25"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="gc6-Ov-lb8"/>
-                                                                <constraint firstAttribute="width" constant="20" id="yqh-q4-d2r"/>
+                                                                <constraint firstAttribute="height" constant="25" id="gc6-Ov-lb8"/>
+                                                                <constraint firstAttribute="width" constant="25" id="yqh-q4-d2r"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                             <state key="normal" title="Reply">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -112,8 +112,8 @@
                                                         <constraint firstItem="xlX-f7-XQ0" firstAttribute="top" secondItem="WMh-Q2-agw" secondAttribute="top" id="4uF-9E-yaO"/>
                                                         <constraint firstAttribute="trailing" secondItem="gO5-d8-5Tz" secondAttribute="trailing" constant="5" id="7Is-h6-fad"/>
                                                         <constraint firstItem="gO5-d8-5Tz" firstAttribute="leading" secondItem="WMh-Q2-agw" secondAttribute="leading" constant="1" id="ExH-21-Omh"/>
-                                                        <constraint firstItem="gi5-NA-NaB" firstAttribute="leading" secondItem="WMh-Q2-agw" secondAttribute="leading" constant="1" id="IsU-pF-x0U"/>
-                                                        <constraint firstAttribute="bottom" secondItem="gi5-NA-NaB" secondAttribute="bottom" id="M2y-Ik-E5V"/>
+                                                        <constraint firstItem="gi5-NA-NaB" firstAttribute="leading" secondItem="WMh-Q2-agw" secondAttribute="leading" id="IsU-pF-x0U"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gi5-NA-NaB" secondAttribute="bottom" constant="-5" id="M2y-Ik-E5V"/>
                                                         <constraint firstItem="gi5-NA-NaB" firstAttribute="top" secondItem="gO5-d8-5Tz" secondAttribute="bottom" constant="4" id="RkH-vV-ZWu"/>
                                                         <constraint firstItem="UNg-uf-Qdm" firstAttribute="leading" secondItem="xlX-f7-XQ0" secondAttribute="trailing" constant="6" id="VMw-5r-FN8"/>
                                                         <constraint firstItem="xlX-f7-XQ0" firstAttribute="leading" secondItem="WMh-Q2-agw" secondAttribute="leading" id="Z3h-q3-tJl"/>
@@ -142,6 +142,7 @@
                                             <outlet property="messageLabel" destination="gO5-d8-5Tz" id="aQK-qW-7XG"/>
                                             <outlet property="nameLabel" destination="xlX-f7-XQ0" id="HJM-Ra-PhR"/>
                                             <outlet property="pictureView" destination="HlO-Su-WsS" id="fAR-5F-DCT"/>
+                                            <outlet property="replyButton" destination="gi5-NA-NaB" id="gew-H7-U4B"/>
                                             <outlet property="retweetLabel" destination="oj5-h9-o67" id="25L-pS-JPx"/>
                                             <outlet property="timeLabel" destination="kBq-xD-73B" id="aHW-oY-P6F"/>
                                             <outlet property="usernameLabel" destination="UNg-uf-Qdm" id="nQj-ft-lhl"/>
