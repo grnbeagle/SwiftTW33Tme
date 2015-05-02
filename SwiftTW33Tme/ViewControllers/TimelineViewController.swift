@@ -14,17 +14,21 @@ class TimelineViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    var refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
+        tableView.separatorInset = UIEdgeInsetsZero
+        tableView.layoutMargins = UIEdgeInsetsZero
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
 
-        TwitterClient.sharedInstance.timelineWithParams(nil, completion: { (tweets, error) -> () in
-            self.tweets = tweets
-            self.tableView.reloadData()
-        })
+        refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
+
+        fetchData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +39,18 @@ class TimelineViewController: UIViewController {
 
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
+    }
+
+    func refresh() {
+        fetchData()
+        refreshControl.endRefreshing()
+    }
+
+    func fetchData() {
+        TwitterClient.sharedInstance.timelineWithParams(nil, completion: { (tweets, error) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        })
     }
     /*
     // MARK: - Navigation
