@@ -91,6 +91,10 @@ extension TimelineViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         cell.replyButton.tag = indexPath.row
         cell.replyButton.addTarget(self, action: "onReplyClicked:", forControlEvents: UIControlEvents.TouchDown)
+
+        cell.retweetButton.tag = indexPath.row
+        cell.retweetButton.addTarget(self, action: "onRetweetClicked:", forControlEvents: UIControlEvents.TouchDown)
+
         let tweet = tweets![indexPath.row]
         cell.setTweet(tweet)
         return cell
@@ -100,8 +104,26 @@ extension TimelineViewController: UITableViewDataSource {
         var button = sender as? UIButton
         if let button = button {
             let row = button.tag
-            replyTo = tweets?[row]
-            self.performSegueWithIdentifier("composeSegue", sender: self)
+            if row < tweets?.count {
+                replyTo = tweets?[row]
+                self.performSegueWithIdentifier("composeSegue", sender: self)
+            }
+        }
+    }
+
+    func onRetweetClicked(sender: AnyObject?) {
+        var button = sender as? UIButton
+        if let button = button {
+            let row = button.tag
+            if row < tweets?.count {
+                if let tweetId = tweets?[row].id {
+                    TwitterClient.sharedInstance.retweetWithId(tweetId, completion: { (tweet, error) -> () in
+                        if tweet != nil {
+                            self.tweets?.insert(tweet!, atIndex: 0)
+                        }
+                    })
+                }
+            }
         }
     }
 }

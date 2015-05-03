@@ -9,6 +9,7 @@
 import UIKit
 
 class Tweet: NSObject {
+    var id: Int?
     var user: User?
     var text: String?
     var createdAtString: String?
@@ -17,6 +18,7 @@ class Tweet: NSObject {
     var retweetUser: User?
 
     init(dictionary: NSDictionary) {
+        id = dictionary["id"] as? Int
         user = User(dictionary: (dictionary["user"] as? NSDictionary)!)
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
