@@ -150,7 +150,7 @@
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="grnbeagle retweeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oj5-h9-o67">
                                                     <rect key="frame" x="9" y="6" width="303" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -168,10 +168,12 @@
                                             <outlet property="favoriteButton" destination="Utd-CH-nz4" id="FyS-Q7-Gwa"/>
                                             <outlet property="messageLabel" destination="gO5-d8-5Tz" id="aQK-qW-7XG"/>
                                             <outlet property="nameLabel" destination="xlX-f7-XQ0" id="HJM-Ra-PhR"/>
+                                            <outlet property="pictureTopSpacingConstraint" destination="TaL-D1-c9r" id="abV-WD-ajV"/>
                                             <outlet property="pictureView" destination="HlO-Su-WsS" id="fAR-5F-DCT"/>
                                             <outlet property="replyButton" destination="gi5-NA-NaB" id="gew-H7-U4B"/>
                                             <outlet property="retweetButton" destination="GXB-YT-L1j" id="ccI-VT-KxQ"/>
                                             <outlet property="retweetLabel" destination="oj5-h9-o67" id="25L-pS-JPx"/>
+                                            <outlet property="retweetSpacingConstraint" destination="aMp-5z-KOQ" id="hei-hQ-BUe"/>
                                             <outlet property="timeLabel" destination="kBq-xD-73B" id="aHW-oY-P6F"/>
                                             <outlet property="usernameLabel" destination="UNg-uf-Qdm" id="nQj-ft-lhl"/>
                                             <segue destination="SWy-Z4-Nhz" kind="push" id="Vhg-yV-H7k"/>

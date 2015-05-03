@@ -25,6 +25,9 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
 
+    @IBOutlet weak var retweetSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pictureTopSpacingConstraint: NSLayoutConstraint!
+
     var didSetupConstraints = false
 
     override func awakeFromNib() {
@@ -38,6 +41,7 @@ class TweetCell: UITableViewCell {
 
         usernameLabel.textColor = UIColor.tweetmeGrayColor()
         timeLabel.textColor = UIColor.tweetmeGrayColor()
+        retweetLabel.textColor = UIColor.tweetmeGrayColor()
 
         var buttonSpacing = UIEdgeInsetsMake(6, 6, 6, 6)
         replyButton.setImage(TweetCell.replyIcon, forState: UIControlState.Normal)
@@ -69,8 +73,14 @@ class TweetCell: UITableViewCell {
             if let retweeter = tweet.retweetUser {
                 retweetLabel.text = "\(retweeter.name!) retweeted"
             }
+            retweetSpacingConstraint.constant = 22
+            pictureTopSpacingConstraint.constant = 22
+            retweetLabel.hidden = false
         } else {
             retweetLabel.text = ""
+            retweetSpacingConstraint.constant = 0
+            pictureTopSpacingConstraint.constant = 0
+            retweetLabel.hidden = true
         }
     }
 }
