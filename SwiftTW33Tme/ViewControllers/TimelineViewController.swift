@@ -16,6 +16,7 @@ class TimelineViewController: UIViewController {
     @IBOutlet weak var replyButton: UIButton!
 
     var refreshControl = UIRefreshControl()
+    var replyTo: Tweet?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +70,9 @@ class TimelineViewController: UIViewController {
         if let navigationController = navigationController {
             var composeViewController = navigationController.topViewController as? ComposeViewController
             if let composeViewController = composeViewController {
+                if replyTo != nil {
+                    composeViewController.replyTo = replyTo!
+                }
                 composeViewController.delegate = self
             }
         }
@@ -85,9 +89,20 @@ extension TimelineViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+        cell.replyButton.tag = indexPath.row
+        cell.replyButton.addTarget(self, action: "onReplyClicked:", forControlEvents: UIControlEvents.TouchDown)
         let tweet = tweets![indexPath.row]
         cell.setTweet(tweet)
         return cell
+    }
+
+    func onReplyClicked(sender: AnyObject?) {
+        var button = sender as? UIButton
+        if let button = button {
+            let row = button.tag
+            replyTo = tweets?[row]
+            self.performSegueWithIdentifier("composeSegue", sender: self)
+        }
     }
 }
 

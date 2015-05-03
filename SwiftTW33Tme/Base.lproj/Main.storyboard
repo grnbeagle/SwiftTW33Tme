@@ -176,7 +176,7 @@
                                             <outlet property="retweetSpacingConstraint" destination="aMp-5z-KOQ" id="hei-hQ-BUe"/>
                                             <outlet property="timeLabel" destination="kBq-xD-73B" id="aHW-oY-P6F"/>
                                             <outlet property="usernameLabel" destination="UNg-uf-Qdm" id="nQj-ft-lhl"/>
-                                            <segue destination="SWy-Z4-Nhz" kind="push" id="Vhg-yV-H7k"/>
+                                            <segue destination="SWy-Z4-Nhz" kind="push" identifier="" id="Vhg-yV-H7k"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -198,7 +198,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Compose" id="Fz7-Ty-hqW">
                             <connections>
-                                <segue destination="W7k-5c-S1a" kind="modal" modalTransitionStyle="coverVertical" id="fFV-KN-xcZ"/>
+                                <segue destination="W7k-5c-S1a" kind="modal" identifier="composeSegue" modalTransitionStyle="coverVertical" id="fFV-KN-xcZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

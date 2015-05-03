@@ -22,6 +22,7 @@ class ComposeViewController: UIViewController {
     let placeholderText = "What's happening?"
 
     weak var delegate: ComposeViewControllerDelegate?
+    var replyTo: Tweet?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,13 @@ class ComposeViewController: UIViewController {
             var imageURL = NSURL(string: user.profileImageUrl!)
             pictureView.loadAsync(imageURL!, animate: true, failure: nil)
         }
+
+        if let replyTo = replyTo, user = replyTo.user {
+            messageTextView.text = "@\(user.screenName!)"
+            messageTextView.textColor = UIColor.blackColor()
+            messageTextView.becomeFirstResponder()
+        }
+
         // Set vertical alignment of message text to top
         automaticallyAdjustsScrollViewInsets = false
     }
@@ -54,15 +62,20 @@ class ComposeViewController: UIViewController {
         TwitterClient.sharedInstance.updateStatusWithParams(params, completion: { (tweet, error) -> () in
             if tweet != nil {
                 self.delegate?.composeViewController?(self, didAddNewTweet: tweet!)
-                self.dismissViewControllerAnimated(true, completion: nil)
             }
             if error != nil {
                 println("error: \(error)")
             }
+            self.close()
         })
     }
 
     @IBAction func onClose(sender: AnyObject) {
+        close()
+    }
+
+    func close() {
+        replyTo = nil
         dismissViewControllerAnimated(true, completion: nil)
     }
     /*
