@@ -95,6 +95,9 @@ extension TimelineViewController: UITableViewDataSource {
         cell.retweetButton.tag = indexPath.row
         cell.retweetButton.addTarget(self, action: "onRetweetClicked:", forControlEvents: UIControlEvents.TouchDown)
 
+        cell.favoriteButton.tag = indexPath.row
+        cell.favoriteButton.addTarget(self, action: "onFavoriteClicked:", forControlEvents: UIControlEvents.TouchDown)
+
         let tweet = tweets![indexPath.row]
         cell.setTweet(tweet)
         return cell
@@ -121,6 +124,20 @@ extension TimelineViewController: UITableViewDataSource {
                         if tweet != nil {
                             self.tweets?.insert(tweet!, atIndex: 0)
                         }
+                    })
+                }
+            }
+        }
+    }
+
+    func onFavoriteClicked(sender: AnyObject?) {
+        var button = sender as? UIButton
+        if let button = button {
+            let row = button.tag
+            if row < tweets?.count {
+                if let tweetId = tweets?[row].id {
+                    TwitterClient.sharedInstance.favoriteWithId(tweetId, completion: { (tweet, error) -> () in
+                        // TODO: mark favorited
                     })
                 }
             }

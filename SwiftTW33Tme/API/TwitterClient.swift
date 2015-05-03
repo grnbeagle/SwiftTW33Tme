@@ -91,4 +91,17 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         })
     }
 
+    func favoriteWithId(tweetId: Int, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        let params = ["id": tweetId]
+        POST("1.1/favorites/create.json", parameters: params,
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                var tweet = Tweet(dictionary: response as! NSDictionary)
+                completion(tweet: tweet, error: nil)
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("error: \(error)")
+                completion(tweet: nil, error: error)
+        })
+    }
+
 }

@@ -222,41 +222,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWT-R2-le3" userLabel="Container">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWT-R2-le3" userLabel="Container">
                                 <rect key="frame" x="16" y="92" width="288" height="456"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eMZ-hK-z4l">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eMZ-hK-z4l">
                                         <rect key="frame" x="0.0" y="8" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="RC0-yh-JFg"/>
+                                            <constraint firstAttribute="width" constant="50" id="bGY-do-DqF"/>
+                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRK-G3-dmo">
-                                        <rect key="frame" x="58" y="8" width="230" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@screename" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2F-Cz-vg1">
-                                        <rect key="frame" x="58" y="28" width="230" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRK-G3-dmo">
+                                        <rect key="frame" x="58" y="8" width="222" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CS8-Yf-rjp" userLabel="Message">
-                                        <rect key="frame" x="0.0" y="73" width="288" height="48"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@screename" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2F-Cz-vg1">
+                                        <rect key="frame" x="58" y="28" width="230" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CS8-Yf-rjp" userLabel="Message">
+                                        <rect key="frame" x="0.0" y="73" width="288" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="CS8-Yf-rjp" firstAttribute="top" secondItem="eMZ-hK-z4l" secondAttribute="bottom" constant="15" id="Acb-BA-owM"/>
+                                    <constraint firstItem="X2F-Cz-vg1" firstAttribute="top" secondItem="nRK-G3-dmo" secondAttribute="bottom" constant="3" id="Twq-Iu-6Vt"/>
+                                    <constraint firstAttribute="trailing" secondItem="nRK-G3-dmo" secondAttribute="trailing" constant="8" id="UH1-Ey-y26"/>
+                                    <constraint firstItem="nRK-G3-dmo" firstAttribute="top" secondItem="BWT-R2-le3" secondAttribute="top" constant="8" id="VZ1-Du-dKF"/>
+                                    <constraint firstItem="X2F-Cz-vg1" firstAttribute="leading" secondItem="eMZ-hK-z4l" secondAttribute="trailing" constant="8" id="Xnz-Qb-mmg"/>
+                                    <constraint firstItem="nRK-G3-dmo" firstAttribute="leading" secondItem="eMZ-hK-z4l" secondAttribute="trailing" constant="8" id="aho-SL-eYh"/>
+                                    <constraint firstItem="CS8-Yf-rjp" firstAttribute="leading" secondItem="BWT-R2-le3" secondAttribute="leading" id="cAz-LK-DKW"/>
+                                    <constraint firstAttribute="trailing" secondItem="X2F-Cz-vg1" secondAttribute="trailing" id="fJw-qx-l7P"/>
+                                    <constraint firstItem="eMZ-hK-z4l" firstAttribute="leading" secondItem="BWT-R2-le3" secondAttribute="leading" id="iGQ-tU-avd"/>
+                                    <constraint firstItem="eMZ-hK-z4l" firstAttribute="top" secondItem="BWT-R2-le3" secondAttribute="top" constant="8" id="xQN-FF-T4S"/>
+                                    <constraint firstAttribute="trailing" secondItem="CS8-Yf-rjp" secondAttribute="trailing" id="ySK-qR-lse"/>
+                                </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="grnbeagle retweeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSX-Wv-c0w">
+                                <rect key="frame" x="16" y="72" width="158" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BWT-R2-le3" firstAttribute="trailing" secondItem="ekZ-iL-9qQ" secondAttribute="trailingMargin" id="74u-Eg-lqA"/>
+                            <constraint firstItem="BWT-R2-le3" firstAttribute="leading" secondItem="ekZ-iL-9qQ" secondAttribute="leadingMargin" id="U0O-It-lb4"/>
+                            <constraint firstItem="ks0-ml-dn2" firstAttribute="top" secondItem="BWT-R2-le3" secondAttribute="bottom" constant="20" id="Z8Y-8F-qZQ"/>
+                            <constraint firstItem="BWT-R2-le3" firstAttribute="top" secondItem="ixq-9u-gBY" secondAttribute="bottom" constant="28" id="iYd-39-6g4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tweet" id="dKw-4z-lby">
                         <barButtonItem key="rightBarButtonItem" title="Reply" id="l8X-kj-ATD"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="containerTopSpacingConstraint" destination="iYd-39-6g4" id="jV6-yI-Ayu"/>
+                        <outlet property="messageLabel" destination="CS8-Yf-rjp" id="9dd-i6-7Xi"/>
                         <outlet property="nameLabel" destination="nRK-G3-dmo" id="kFJ-3J-ALm"/>
+                        <outlet property="pictureView" destination="eMZ-hK-z4l" id="eMX-fz-mUT"/>
+                        <outlet property="retweetLabel" destination="TSX-Wv-c0w" id="Mti-K8-ufB"/>
+                        <outlet property="screennameLabel" destination="X2F-Cz-vg1" id="hRZ-I9-oSK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HxQ-JX-qVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
