@@ -21,6 +21,7 @@ class TimelineViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorInset = UIEdgeInsetsZero
         tableView.layoutMargins = UIEdgeInsetsZero
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -55,16 +56,20 @@ class TimelineViewController: UIViewController {
     }
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        let tweetViewController = segue.destinationViewController as? TweetViewController
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPathForCell(cell)!
+        var tweetViewController = segue.destinationViewController as? TweetViewController
+        var navigationController = segue.destinationViewController as? UINavigationController
         if let tweetViewController = tweetViewController {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPathForCell(cell)!
             if tweets?.count > indexPath.row {
                 tweetViewController.tweet = tweets?[indexPath.row]
+            }
+        }
+        if let navigationController = navigationController {
+            var composeViewController = navigationController.topViewController as? ComposeViewController
+            if let composeViewController = composeViewController {
+                composeViewController.delegate = self
             }
         }
     }
@@ -83,5 +88,18 @@ extension TimelineViewController: UITableViewDataSource {
         let tweet = tweets![indexPath.row]
         cell.setTweet(tweet)
         return cell
+    }
+}
+
+extension TimelineViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+}
+
+extension TimelineViewController: ComposeViewControllerDelegate {
+    func composeViewController(composeViewController: ComposeViewController, didAddNewTweet tweet: Tweet) {
+        tweets?.insert(tweet, atIndex: 0)
+        tableView.reloadData()
     }
 }

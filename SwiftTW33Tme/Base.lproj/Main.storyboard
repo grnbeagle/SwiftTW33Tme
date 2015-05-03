@@ -99,10 +99,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="GXB-YT-L1j">
-                                                            <rect key="frame" x="33" y="52" width="25" height="25"/>
+                                                            <rect key="frame" x="33" y="52" width="28" height="23"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="25" id="4Ko-4P-ngN"/>
-                                                                <constraint firstAttribute="height" constant="25" id="bZR-Lp-Wjq"/>
+                                                                <constraint firstAttribute="width" constant="28" id="4Ko-4P-ngN"/>
+                                                                <constraint firstAttribute="height" constant="23" id="bZR-Lp-Wjq"/>
                                                             </constraints>
                                                             <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                             <state key="normal" title="Retweet">
@@ -139,7 +139,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="gi5-NA-NaB" secondAttribute="bottom" constant="-5" id="M2y-Ik-E5V"/>
                                                         <constraint firstItem="GXB-YT-L1j" firstAttribute="top" secondItem="gO5-d8-5Tz" secondAttribute="bottom" constant="4" id="QHh-xU-hR1"/>
                                                         <constraint firstItem="gi5-NA-NaB" firstAttribute="top" secondItem="gO5-d8-5Tz" secondAttribute="bottom" constant="4" id="RkH-vV-ZWu"/>
-                                                        <constraint firstItem="Utd-CH-nz4" firstAttribute="leading" secondItem="GXB-YT-L1j" secondAttribute="trailing" constant="8" id="V5y-ls-Rx4"/>
+                                                        <constraint firstItem="Utd-CH-nz4" firstAttribute="leading" secondItem="GXB-YT-L1j" secondAttribute="trailing" constant="5" id="V5y-ls-Rx4"/>
                                                         <constraint firstItem="UNg-uf-Qdm" firstAttribute="leading" secondItem="xlX-f7-XQ0" secondAttribute="trailing" constant="6" id="VMw-5r-FN8"/>
                                                         <constraint firstItem="xlX-f7-XQ0" firstAttribute="leading" secondItem="WMh-Q2-agw" secondAttribute="leading" id="Z3h-q3-tJl"/>
                                                         <constraint firstItem="GXB-YT-L1j" firstAttribute="leading" secondItem="gi5-NA-NaB" secondAttribute="trailing" constant="8" id="eta-IQ-UTc"/>
@@ -273,10 +273,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P7S-hk-Bry">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="test" translatesAutoresizingMaskIntoConstraints="NO" id="P7S-hk-Bry">
                                 <rect key="frame" x="0.0" y="139" width="320" height="148"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -287,7 +286,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@screename" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlE-RA-SiB">
-                                <rect key="frame" x="63" y="100" width="98" height="21"/>
+                                <rect key="frame" x="63" y="100" width="241" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -304,7 +303,18 @@
                                 <action selector="onClose:" destination="PxC-eM-GFR" id="wNj-wU-Egg"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="9xP-kj-mJb">
+                            <connections>
+                                <action selector="onTweet:" destination="PxC-eM-GFR" id="7Zd-z1-UDM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="messageTextView" destination="P7S-hk-Bry" id="LmG-s5-Pdy"/>
+                        <outlet property="nameLabel" destination="sUb-CK-zhJ" id="Bvj-Sf-AO8"/>
+                        <outlet property="pictureView" destination="ltw-4l-AOm" id="hvo-Pg-7pH"/>
+                        <outlet property="screennameLabel" destination="WlE-RA-SiB" id="tAY-TA-gOl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZm-ua-UYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
