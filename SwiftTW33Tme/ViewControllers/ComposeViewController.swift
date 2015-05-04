@@ -68,7 +68,10 @@ class ComposeViewController: UIViewController {
     }
     
     @IBAction func onTweet(sender: AnyObject) {
-        let params = ["status": messageTextView.text]
+        var params: [String: String] = ["status": messageTextView.text]
+        if let replyTo = replyTo {
+            params.updateValue("\(replyTo.id)", forKey: "in_reply_to_status_id")
+        }
         TwitterClient.sharedInstance.updateStatusWithParams(params, completion: { (tweet, error) -> () in
             if tweet != nil {
                 self.delegate?.composeViewController?(self, didAddNewTweet: tweet!)
