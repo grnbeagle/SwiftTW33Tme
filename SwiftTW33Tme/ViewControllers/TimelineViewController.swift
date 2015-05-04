@@ -20,6 +20,7 @@ class TimelineViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -125,12 +126,16 @@ extension TimelineViewController: UITableViewDataSource {
         if let button = button {
             let row = button.tag
             if row < tweets?.count {
-                if let tweetId = tweets?[row].id {
-                    TwitterClient.sharedInstance.retweetWithId(tweetId, completion: { (tweet, error) -> () in
-                        if tweet != nil {
-                            self.tweets?.insert(tweet!, atIndex: 0)
-                        }
-                    })
+                if let tweet = tweets?[row] {
+                    if !tweet.retweetedByCurrentUser {
+                        button.alpha = 1
+                        var tweetId = tweet.id!
+                        TwitterClient.sharedInstance.retweetWithId(tweetId, completion: { (tweet, error) -> () in
+                            if let tweet = tweet {
+                                self.tweets?[row] = tweet
+                            }
+                        })
+                    }
                 }
             }
         }
@@ -141,10 +146,23 @@ extension TimelineViewController: UITableViewDataSource {
         if let button = button {
             let row = button.tag
             if row < tweets?.count {
-                if let tweetId = tweets?[row].id {
-                    TwitterClient.sharedInstance.favoriteWithId(tweetId, completion: { (tweet, error) -> () in
-                        // TODO: mark favorited
-                    })
+                if let tweet = tweets?[row] {
+                    var tweetId = tweet.id!
+                    if tweet.favorited {
+                        button.alpha = 0.5
+                        TwitterClient.sharedInstance.unfavoriteWithId(tweetId, completion: { (tweet, error) -> () in
+                            if let tweet = tweet {
+                                self.tweets?[row] = tweet
+                            }
+                        })
+                    } else {
+                        button.alpha = 1
+                        TwitterClient.sharedInstance.favoriteWithId(tweetId, completion: { (tweet, error) -> () in
+                            if let tweet = tweet {
+                                self.tweets?[row] = tweet
+                            }
+                        })
+                    }
                 }
             }
         }

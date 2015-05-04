@@ -52,6 +52,10 @@ class TweetCell: UITableViewCell {
 
         favoriteButton.setImage(TweetCell.favoriteIcon, forState: UIControlState.Normal)
         favoriteButton.imageEdgeInsets = buttonSpacing
+
+        replyButton.alpha = 0.5
+        retweetButton.alpha = 0.5
+        favoriteButton.alpha = 0.5
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -82,5 +86,8 @@ class TweetCell: UITableViewCell {
             pictureTopSpacingConstraint.constant = 0
             retweetLabel.hidden = true
         }
+        retweetButton.alpha = tweet.retweetedByCurrentUser ? 1 : 0.5
+        //retweetButton.enabled = !tweet.retweetedByCurrentUser
+        favoriteButton.alpha = tweet.favorited ? 1 : 0.5
     }
 }

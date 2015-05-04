@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: User.userDidLogoutNotification, object: nil)
 
+        UINavigationBar.appearance().barTintColor = UIColor.tweetmeBabyBlueColor()
+        UINavigationBar.appearance().barStyle = UIBarStyle.Black
+
         if User.currentUser != nil {
             println("Current user detected")
             var vc = storyboard.instantiateViewControllerWithIdentifier("HomeScreen") as? UIViewController

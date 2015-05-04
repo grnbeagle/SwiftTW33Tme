@@ -16,6 +16,7 @@ class Tweet: NSObject {
     var createdAt: NSDate?
     var retweet: Bool = false
     var retweetedByCurrentUser: Bool = false
+    var favorited: Bool = false
     var retweetUser: User?
     var retweetCount: Int?
     var favoriteCount: Int?
@@ -33,8 +34,11 @@ class Tweet: NSObject {
         if favoriteCount == nil {
             favoriteCount = 0
         }
-        if let retweet = dictionary["retweet"] as? Bool {
-            retweetedByCurrentUser = retweet
+        if let retweeted = dictionary["retweeted"] as? Bool {
+            retweetedByCurrentUser = retweeted
+        }
+        if let favorited = dictionary["favorited"] as? Bool {
+            self.favorited = favorited
         }
 
         var formatter = NSDateFormatter()
