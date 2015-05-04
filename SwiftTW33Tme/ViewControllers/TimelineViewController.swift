@@ -70,6 +70,12 @@ class TimelineViewController: UIViewController {
         if let navigationController = navigationController {
             var composeViewController = navigationController.topViewController as? ComposeViewController
             if let composeViewController = composeViewController {
+                let composeButton = sender as? UIBarButtonItem
+                if let composeButton = composeButton {
+                    if composeButton.title == "Compose" {
+                        replyTo = nil
+                    }
+                }
                 if replyTo != nil {
                     composeViewController.replyTo = replyTo!
                 }

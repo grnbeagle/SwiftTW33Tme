@@ -20,9 +20,11 @@ class ComposeViewController: UIViewController {
     @IBOutlet weak var messageTextView: UITextView!
 
     let placeholderText = "What's happening?"
+    let charLimit = 140
 
     weak var delegate: ComposeViewControllerDelegate?
     var replyTo: Tweet?
+    var charCountLabel: UILabel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,12 @@ class ComposeViewController: UIViewController {
 
         // Set vertical alignment of message text to top
         automaticallyAdjustsScrollViewInsets = false
+
+        // Setup a label for character count
+        charCountLabel = UILabel(frame: CGRectMake(view.frame.width - 100, -3, 100, 50))
+        charCountLabel!.text = "\(charLimit)"
+        charCountLabel!.textColor = UIColor.tweetmeGrayColor()
+        navigationController?.navigationBar.addSubview(charCountLabel!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,6 +113,11 @@ extension ComposeViewController: UITextViewDelegate {
             textView.textColor = UIColor.tweetmeGrayColor()
         }
         textView.resignFirstResponder()
+    }
+
+    func textViewDidChange(textView: UITextView) {
+        var remainingCount = charLimit - count(textView.text)
+        charCountLabel?.text = "\(remainingCount)"
     }
 }
 
