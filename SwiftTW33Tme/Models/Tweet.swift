@@ -30,7 +30,7 @@ class Tweet: NSObject {
         if retweetCount == nil {
             retweetCount = 0
         }
-        favoriteCount = dictionary["favourites_count"] as? Int
+        favoriteCount = dictionary["favorite_count"] as? Int
         if favoriteCount == nil {
             favoriteCount = 0
         }

@@ -58,7 +58,7 @@ class ComposeViewController: UIViewController {
         // Setup a label for character count
         charCountLabel = UILabel(frame: CGRectMake(view.frame.width - 100, -3, 100, 50))
         charCountLabel!.text = "\(charLimit)"
-        charCountLabel!.textColor = UIColor.tweetmeGrayColor()
+        charCountLabel!.textColor = UIColor.whiteColor()
         navigationController?.navigationBar.addSubview(charCountLabel!)
     }
 

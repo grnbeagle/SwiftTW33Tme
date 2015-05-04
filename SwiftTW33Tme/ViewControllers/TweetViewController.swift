@@ -38,11 +38,16 @@ class TweetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        pictureView.layer.cornerRadius = 3
+        pictureView.clipsToBounds = true
+
         retweetLabel.textColor = UIColor.tweetmeGrayColor()
         screennameLabel.textColor = UIColor.tweetmeGrayColor()
         separator1.backgroundColor = UIColor.tweetmeGrayColor()
         separator2.backgroundColor = UIColor.tweetmeGrayColor()
         timestampLabel.textColor = UIColor.tweetmeGrayColor()
+        retweetWordLabel.textColor = UIColor.tweetmeGrayColor()
+        favoriteWordLabel.textColor = UIColor.tweetmeGrayColor()
 
         var buttonSpacing = UIEdgeInsetsMake(6, 6, 6, 6)
         replyButton.setImage(TweetViewController.replyIcon, forState: UIControlState.Normal)
@@ -53,6 +58,10 @@ class TweetViewController: UIViewController {
 
         favoriteButton.setImage(TweetViewController.favoriteIcon, forState: UIControlState.Normal)
         favoriteButton.imageEdgeInsets = buttonSpacing
+
+        replyButton.alpha = 0.5
+        retweetButton.alpha = 0.5
+        favoriteButton.alpha = 0.5
 
         if let tweet = tweet {
             if let user = tweet.user {
@@ -82,15 +91,11 @@ class TweetViewController: UIViewController {
     func updateCount(tweet: Tweet) {
         if let retweetCount = tweet.retweetCount {
             retweetCountLabel.text = "\(retweetCount)"
-            if retweetCount > 1 {
-                retweetWordLabel.text = "RETWEETS"
-            }
+            retweetWordLabel.text = retweetCount > 1 ? "RETWEETS" : "RETWEET"
         }
         if let favoriteCount = tweet.favoriteCount {
             favoriteCountLabel.text = "\(favoriteCount)"
-            if favoriteCount > 1 {
-                favoriteWordLabel.text = "FAVORITES"
-            }
+            favoriteWordLabel.text = favoriteCount > 1 ? "FAVORITES" : "FAVORITE"
         }
         retweetCountLabel.sizeToFit()
         favoriteCountLabel.sizeToFit()
@@ -98,6 +103,7 @@ class TweetViewController: UIViewController {
 
     func updateButtonState(tweet: Tweet) {
         retweetButton.alpha = tweet.retweetedByCurrentUser ? 1 : 0.5
+        favoriteButton.alpha = tweet.favorited ? 1 : 0.5
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,6 +114,48 @@ class TweetViewController: UIViewController {
     @IBAction func onReplyClicked(sender: AnyObject) {
         performSegueWithIdentifier("tweetToComposeSegue", sender: self)
     }
+
+    @IBAction func onRetweetClicked(sender: AnyObject) {
+        if let tweet = tweet {
+            if !tweet.retweetedByCurrentUser {
+                retweetButton.alpha = 1
+                var tweetId = tweet.id!
+                TwitterClient.sharedInstance.retweetWithId(tweetId, completion: { (tweet, error) -> () in
+                    if let tweet = tweet {
+                        self.tweet = tweet
+                        self.updateCount(tweet)
+                    }
+                })
+            }
+        }
+    }
+
+    @IBAction func onFavoriteClicked(sender: AnyObject) {
+        if let tweet = tweet {
+            if tweet.favorited {
+                favoriteButton.alpha = 0.5
+                TwitterClient.sharedInstance.unfavoriteWithId(tweet.id!, completion: { (tweet, error) -> () in
+                    if let tweet = tweet {
+                        self.tweet = tweet
+                        self.updateCount(tweet)
+                    }
+                })
+            } else {
+                favoriteButton.alpha = 1
+                TwitterClient.sharedInstance.favoriteWithId(tweet.id!, completion: { (tweet, error) -> () in
+                    if let tweet = tweet {
+                        self.tweet = tweet
+                        self.updateCount(tweet)
+                    }
+                })
+            }
+        }
+    }
+
+    @IBAction func onNavReplyClicked(sender: AnyObject) {
+        performSegueWithIdentifier("tweetToComposeSegue", sender: self)
+    }
+
 
     // MARK: - Navigation
 
