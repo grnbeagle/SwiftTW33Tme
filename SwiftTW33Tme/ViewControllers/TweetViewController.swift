@@ -126,6 +126,17 @@ class TweetViewController: UIViewController {
                         self.updateCount(tweet)
                     }
                 })
+            } else if tweet.currentUserRetweetId != nil {
+                // Removing retweet doesn't work in the tweet view as we don't have a reference to retweet id
+                retweetButton.alpha = 0.5
+                TwitterClient.sharedInstance.destroyStatusWithId(tweet.currentUserRetweetId!, completion: { (tweet, error) -> () in
+                    if let tweet = self.tweet {
+                        tweet.retweetCount = max(0, tweet.retweetCount! - 1)
+                        tweet.retweetedByCurrentUser = false
+                        self.tweet = tweet
+                        self.updateCount(tweet)
+                    }
+                })
             }
         }
     }

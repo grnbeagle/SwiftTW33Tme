@@ -20,6 +20,7 @@ class Tweet: NSObject {
     var retweetUser: User?
     var retweetCount: Int?
     var favoriteCount: Int?
+    var currentUserRetweetId: Int?
 
     init(dictionary: NSDictionary) {
         id = dictionary["id"] as? Int
@@ -50,6 +51,11 @@ class Tweet: NSObject {
             retweet = true
             retweetUser = user
             user = User(dictionary: (retweetDict["user"] as? NSDictionary)!)
+        }
+
+        var currentUserRetweet = dictionary["current_user_retweet"] as? NSDictionary
+        if let currentUserRetweet = currentUserRetweet {
+            currentUserRetweetId = currentUserRetweet["id"] as? Int
         }
     }
 
