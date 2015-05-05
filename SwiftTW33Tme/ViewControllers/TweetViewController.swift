@@ -121,21 +121,21 @@ class TweetViewController: UIViewController {
                 retweetButton.alpha = 1
                 TwitterClient.sharedInstance.retweetWithId(tweet.id!, completion: { (tweet, error) -> () in
                     if let tweet = tweet {
-                        tweet.currentUserRetweetId = tweet.id
-                        tweet.retweetedByCurrentUser = true
-                        self.tweet = tweet
-                        self.updateCount(tweet)
+                        // returned tweet is a retweeted tweet.. different from the original tweet
+                        self.tweet!.currentUserRetweetId = tweet.id
+                        self.tweet!.retweetedByCurrentUser = true
+                        self.tweet!.retweetCount = tweet.retweetCount
+                        self.updateCount(self.tweet!)
                     }
                 })
             } else if tweet.currentUserRetweetId != nil {
                 retweetButton.alpha = 0.5
                 TwitterClient.sharedInstance.destroyStatusWithId(tweet.id!, completion: { (tweet, error) -> () in
                     if let tweet = self.tweet {
-                        tweet.retweetCount = max(0, tweet.retweetCount! - 1)
-                        tweet.retweetedByCurrentUser = false
-                        tweet.currentUserRetweetId = nil
-                        self.tweet = tweet
-                        self.updateCount(tweet)
+                        self.tweet!.retweetCount = tweet.retweetCount
+                        self.tweet!.retweetedByCurrentUser = false
+                        self.tweet!.currentUserRetweetId = nil
+                        self.updateCount(self.tweet!)
                     }
                 })
             }
@@ -148,16 +148,16 @@ class TweetViewController: UIViewController {
                 favoriteButton.alpha = 0.5
                 TwitterClient.sharedInstance.unfavoriteWithId(tweet.id!, completion: { (tweet, error) -> () in
                     if let tweet = tweet {
-                        self.tweet = tweet
-                        self.updateCount(tweet)
+                        self.tweet!.favoriteCount = tweet.favoriteCount
+                        self.updateCount(self.tweet!)
                     }
                 })
             } else {
                 favoriteButton.alpha = 1
                 TwitterClient.sharedInstance.favoriteWithId(tweet.id!, completion: { (tweet, error) -> () in
                     if let tweet = tweet {
-                        self.tweet = tweet
-                        self.updateCount(tweet)
+                        self.tweet!.favoriteCount = tweet.favoriteCount
+                        self.updateCount(self.tweet!)
                     }
                 })
             }
