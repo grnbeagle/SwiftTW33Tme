@@ -43,8 +43,8 @@ class TweetViewController: UIViewController {
 
         retweetLabel.textColor = UIColor.tweetmeGrayColor()
         screennameLabel.textColor = UIColor.tweetmeGrayColor()
-        separator1.backgroundColor = UIColor.tweetmeGrayColor()
-        separator2.backgroundColor = UIColor.tweetmeGrayColor()
+        separator1.backgroundColor = UIColor.tweetmeLightGrayColor()
+        separator2.backgroundColor = UIColor.tweetmeLightGrayColor()
         timestampLabel.textColor = UIColor.tweetmeGrayColor()
         retweetWordLabel.textColor = UIColor.tweetmeGrayColor()
         favoriteWordLabel.textColor = UIColor.tweetmeGrayColor()
@@ -119,17 +119,15 @@ class TweetViewController: UIViewController {
         if let tweet = tweet {
             if !tweet.retweetedByCurrentUser {
                 retweetButton.alpha = 1
-                var tweetId = tweet.id!
-                TwitterClient.sharedInstance.retweetWithId(tweetId, completion: { (tweet, error) -> () in
+                TwitterClient.sharedInstance.retweetWithId(tweet.id!, completion: { (tweet, error) -> () in
                     if let tweet = tweet {
                         self.tweet = tweet
                         self.updateCount(tweet)
                     }
                 })
-            } else if tweet.currentUserRetweetId != nil {
-                // Removing retweet doesn't work in the tweet view as we don't have a reference to retweet id
+            } else {
                 retweetButton.alpha = 0.5
-                TwitterClient.sharedInstance.destroyStatusWithId(tweet.currentUserRetweetId!, completion: { (tweet, error) -> () in
+                TwitterClient.sharedInstance.destroyStatusWithId(tweet.id!, completion: { (tweet, error) -> () in
                     if let tweet = self.tweet {
                         tweet.retweetCount = max(0, tweet.retweetCount! - 1)
                         tweet.retweetedByCurrentUser = false

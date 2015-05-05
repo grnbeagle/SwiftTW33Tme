@@ -17,11 +17,13 @@ class TimelineViewController: UIViewController {
 
     var refreshControl = UIRefreshControl()
     var replyTo: Tweet?
+    var sinceTweetId: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
+        tweets = [Tweet]()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorInset = UIEdgeInsetsZero
@@ -32,6 +34,7 @@ class TimelineViewController: UIViewController {
         refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
 
+        createLoadingIcon()
         fetchData()
     }
 
@@ -51,11 +54,31 @@ class TimelineViewController: UIViewController {
     }
 
     func fetchData() {
-        TwitterClient.sharedInstance.timelineWithParams(nil, completion: { (tweets, error) -> () in
-            self.tweets = tweets
-            self.tableView.reloadData()
+        var params = NSMutableDictionary()
+        if let sinceTweetId = sinceTweetId {
+            params["since_id"] = sinceTweetId
+        }
+        TwitterClient.sharedInstance.timelineWithParams(params, completion: { (tweets, error) -> () in
+            if let tweets = tweets {
+                self.tweets! += tweets
+                if self.sinceTweetId == nil && count(tweets) > 0 {
+                    var lastTweet = tweets[count(tweets)-1] as Tweet
+                    self.sinceTweetId = lastTweet.id
+                }
+                self.tableView.reloadData()
+            }
         })
     }
+
+    func createLoadingIcon() {
+        var tableFooterView = UIView(frame: CGRectMake(0, 0, view.frame.width, 50))
+        var loadingView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        loadingView.startAnimating()
+        loadingView.center = tableFooterView.center
+        tableFooterView.addSubview(loadingView)
+        tableView.tableFooterView = tableFooterView
+    }
+
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -107,7 +130,14 @@ extension TimelineViewController: UITableViewDataSource {
 
         let tweet = tweets![indexPath.row]
         cell.setTweet(tweet)
+
         return cell
+    }
+
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row >= self.tweets!.count - 1 {
+            fetchData()
+        }
     }
 
     func onReplyClicked(sender: AnyObject?) {
@@ -135,9 +165,9 @@ extension TimelineViewController: UITableViewDataSource {
                                 self.tweets?[row] = tweet
                             }
                         })
-                    } else if tweet.currentUserRetweetId != nil {
+                    } else {
                         button.alpha = 0.5
-                        TwitterClient.sharedInstance.destroyStatusWithId(tweet.currentUserRetweetId!, completion: { (tweet, error) -> () in
+                        TwitterClient.sharedInstance.destroyStatusWithId(tweet.id!, completion: { (tweet, error) -> () in
                             var tweet = self.tweets?[row]
                             if let tweet = tweet {
                                 tweet.retweetCount = max(0, tweet.retweetCount! - 1)

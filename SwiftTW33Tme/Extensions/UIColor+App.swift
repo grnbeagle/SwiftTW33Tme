@@ -20,4 +20,8 @@ extension UIColor {
     class func tweetmeDarkGrayColor() -> UIColor {
         return UIColor(red: 41/255, green: 47/255, blue: 51/255, alpha: 1)
     }
+
+    class func tweetmeLightGrayColor() -> UIColor {
+        return UIColor(red: 225/255, green: 232/255, blue: 237/255, alpha: 1)
+    }
 }
