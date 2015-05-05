@@ -2,7 +2,7 @@
 
 This is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: `<Number of hours spent>`
+Time spent: 16 hours
 
 ### Features
 
@@ -22,9 +22,9 @@ Time spent: `<Number of hours spent>`
 - [x] When composing, you should have a countdown in the upper right for the tweet limit.
 - [x] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
 - [x] Retweeting and favoriting should increment the retweet and favorite count.
-- [x] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
+- [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count. => un-retweet doesn't work from the detail screen due to not being able to get retweet id.
 - [x] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- [x] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 ### Walkthrough
 
@@ -33,3 +33,4 @@ Time spent: `<Number of hours spent>`
 
 ### Known issues
 - If you change tweet properties (such as favorited) in the tweet view, it's not reflected in the timeline screen.
+- Removing retweet doesn't work from the detail screen.

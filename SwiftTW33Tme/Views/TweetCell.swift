@@ -73,7 +73,7 @@ class TweetCell: UITableViewCell {
         }
         messageLabel.text = tweet.text
         timeLabel.text = tweet.createdAt?.shortTimeAgoSinceNow()
-        if tweet.retweet {
+        if tweet.retweet && !tweet.retweetedByCurrentUser {
             if let retweeter = tweet.retweetUser {
                 retweetLabel.text = "\(retweeter.name!) retweeted"
             }
@@ -87,7 +87,6 @@ class TweetCell: UITableViewCell {
             retweetLabel.hidden = true
         }
         retweetButton.alpha = tweet.retweetedByCurrentUser ? 1 : 0.5
-        //retweetButton.enabled = !tweet.retweetedByCurrentUser
         favoriteButton.alpha = tweet.favorited ? 1 : 0.5
     }
 }

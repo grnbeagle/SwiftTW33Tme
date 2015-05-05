@@ -15,7 +15,6 @@ let twitterURL = NSURL(string: "https://api.twitter.com")
 class TwitterClient: BDBOAuth1RequestOperationManager {
 
     var loginCompletion: ((user: User?, error: NSError?) -> ())?
-
     static let sharedInstance = TwitterClient(baseURL: twitterURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
 
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
@@ -57,7 +56,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
 
     func timelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
-        GET("1.1/statuses/home_timeline.json", parameters: params,
+        GET("1.1/statuses/home_timeline.json?include_my_retweet=1", parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
                 var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
                 completion(tweets: tweets, error: nil)

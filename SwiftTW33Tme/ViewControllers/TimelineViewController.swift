@@ -162,16 +162,18 @@ extension TimelineViewController: UITableViewDataSource {
                         var tweetId = tweet.id!
                         TwitterClient.sharedInstance.retweetWithId(tweetId, completion: { (tweet, error) -> () in
                             if let tweet = tweet {
+                                tweet.currentUserRetweetId = tweet.id!
                                 self.tweets?[row] = tweet
                             }
                         })
-                    } else {
+                    } else if tweet.currentUserRetweetId != nil {
                         button.alpha = 0.5
-                        TwitterClient.sharedInstance.destroyStatusWithId(tweet.id!, completion: { (tweet, error) -> () in
+                        TwitterClient.sharedInstance.destroyStatusWithId(tweet.currentUserRetweetId!, completion: { (tweet, error) -> () in
                             var tweet = self.tweets?[row]
                             if let tweet = tweet {
                                 tweet.retweetCount = max(0, tweet.retweetCount! - 1)
                                 tweet.retweetedByCurrentUser = false
+                                tweet.currentUserRetweetId = nil
                                 self.tweets?[row] = tweet
                             }
                         })

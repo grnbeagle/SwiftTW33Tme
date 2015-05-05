@@ -17,9 +17,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DB-rN-PLI">
-                                <rect key="frame" x="141" y="229" width="38" height="30"/>
-                                <state key="normal" title="Login">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Twitter" translatesAutoresizingMaskIntoConstraints="NO" id="fmA-qc-S3l">
+                                <rect key="frame" x="80" y="155" width="160" height="137"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="137" id="DqY-jh-zOJ"/>
+                                    <constraint firstAttribute="width" constant="160" id="de5-Sl-4Wy"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DB-rN-PLI">
+                                <rect key="frame" x="88" y="349" width="145" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="IYC-8D-Laz"/>
+                                    <constraint firstAttribute="width" constant="145" id="KHW-Yy-LgI"/>
+                                </constraints>
+                                <state key="normal" title="Log in with Twitter ">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -27,7 +39,13 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fmA-qc-S3l" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="135" id="PcS-V1-TLb"/>
+                            <constraint firstAttribute="centerX" secondItem="1DB-rN-PLI" secondAttribute="centerX" id="cDS-Tu-0Tm"/>
+                            <constraint firstAttribute="centerX" secondItem="fmA-qc-S3l" secondAttribute="centerX" id="gcy-9h-caD"/>
+                            <constraint firstItem="1DB-rN-PLI" firstAttribute="top" secondItem="fmA-qc-S3l" secondAttribute="bottom" constant="57" id="igq-yk-8Rd"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="1fs-5Q-4ow" kind="modal" identifier="loginSegue" id="ZrC-D2-o6y"/>
@@ -35,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="217.06666666666666" y="510.25333333333333"/>
+            <point key="canvasLocation" x="168" y="542"/>
         </scene>
         <!--Home-->
         <scene sceneID="MQH-kf-4qR">
@@ -514,6 +532,9 @@
             <point key="canvasLocation" x="1536" y="508"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Twitter" width="1139" height="926"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
