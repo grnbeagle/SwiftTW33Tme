@@ -121,16 +121,19 @@ class TweetViewController: UIViewController {
                 retweetButton.alpha = 1
                 TwitterClient.sharedInstance.retweetWithId(tweet.id!, completion: { (tweet, error) -> () in
                     if let tweet = tweet {
+                        tweet.currentUserRetweetId = tweet.id
+                        tweet.retweetedByCurrentUser = true
                         self.tweet = tweet
                         self.updateCount(tweet)
                     }
                 })
-            } else {
+            } else if tweet.currentUserRetweetId != nil {
                 retweetButton.alpha = 0.5
                 TwitterClient.sharedInstance.destroyStatusWithId(tweet.id!, completion: { (tweet, error) -> () in
                     if let tweet = self.tweet {
                         tweet.retweetCount = max(0, tweet.retweetCount! - 1)
                         tweet.retweetedByCurrentUser = false
+                        tweet.currentUserRetweetId = nil
                         self.tweet = tweet
                         self.updateCount(tweet)
                     }

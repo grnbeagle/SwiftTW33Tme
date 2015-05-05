@@ -49,6 +49,8 @@ class TimelineViewController: UIViewController {
     }
 
     func refresh() {
+        self.tweets = []
+        self.sinceTweetId = nil
         fetchData()
         refreshControl.endRefreshing()
     }
@@ -56,12 +58,13 @@ class TimelineViewController: UIViewController {
     func fetchData() {
         var params = NSMutableDictionary()
         if let sinceTweetId = sinceTweetId {
-            params["since_id"] = sinceTweetId
+            params["max_id"] = "\(sinceTweetId)"
+            println("max_id: \(sinceTweetId)")
         }
         TwitterClient.sharedInstance.timelineWithParams(params, completion: { (tweets, error) -> () in
             if let tweets = tweets {
                 self.tweets! += tweets
-                if self.sinceTweetId == nil && count(tweets) > 0 {
+                if count(tweets) > 0 {
                     var lastTweet = tweets[count(tweets)-1] as Tweet
                     self.sinceTweetId = lastTweet.id
                 }
@@ -128,8 +131,12 @@ extension TimelineViewController: UITableViewDataSource {
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: "onFavoriteClicked:", forControlEvents: UIControlEvents.TouchDown)
 
-        let tweet = tweets![indexPath.row]
-        cell.setTweet(tweet)
+        if let tweets = tweets {
+            if count(tweets) > indexPath.row {
+                let tweet = tweets[indexPath.row]
+                cell.setTweet(tweet)
+            }
+        }
 
         return cell
     }
