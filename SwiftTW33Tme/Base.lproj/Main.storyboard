@@ -228,6 +228,69 @@
             </objects>
             <point key="canvasLocation" x="1127" y="510"/>
         </scene>
+        <!--Container View Controller-->
+        <scene sceneID="Lg0-Pp-rce">
+            <objects>
+                <viewController storyboardIdentifier="ContainerViewController" id="Shc-D7-8mi" customClass="ContainerViewController" customModule="SwiftTW33Tme" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uil-Az-JZY"/>
+                        <viewControllerLayoutGuide type="bottom" id="9HJ-9y-nih"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="26H-i7-pYQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mUj-dY-WCY" userLabel="ContainerView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bg1-cu-LkX">
+                                <rect key="frame" x="0.0" y="518" width="320" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="9gd-wC-0W3"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem title="Timeline" image="Timeline" selectedImage="Timeline" id="iRU-GW-Z7P" userLabel="Timeline"/>
+                                    <tabBarItem tag="1" title="Profile" image="Profile" id="3sU-nM-6sH" userLabel="Profile"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bg1-cu-LkX" secondAttribute="trailing" constant="-16" id="8sb-lJ-vEd"/>
+                            <constraint firstItem="Bg1-cu-LkX" firstAttribute="leading" secondItem="26H-i7-pYQ" secondAttribute="leadingMargin" constant="-16" id="LJh-Xd-si0"/>
+                            <constraint firstItem="9HJ-9y-nih" firstAttribute="top" secondItem="Bg1-cu-LkX" secondAttribute="bottom" constant="1" id="OY5-0M-ATd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="QDu-Oc-9BV"/>
+                    <connections>
+                        <outlet property="containerView" destination="mUj-dY-WCY" id="Hi4-0W-tVc"/>
+                        <outlet property="tabBarView" destination="Bg1-cu-LkX" id="zZp-eN-Vp7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dlk-KP-ndh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1146" y="1212"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="QXm-Rr-W2v">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" id="Rbe-9G-euv" customClass="MenuViewController" customModule="SwiftTW33Tme" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T4U-AU-20s"/>
+                        <viewControllerLayoutGuide type="bottom" id="f7u-c9-Yyw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lhc-wA-yXU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.83504173859999997" green="0.72643250000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vhy-Md-93u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1154" y="1849"/>
+        </scene>
         <!--Tweet-->
         <scene sceneID="BSr-WK-8en">
             <objects>
@@ -434,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HxQ-JX-qVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1127" y="1157"/>
+            <point key="canvasLocation" x="1659" y="1157"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="q2U-6r-Loi">
@@ -533,6 +596,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Profile" width="50" height="50"/>
+        <image name="Timeline" width="50" height="50"/>
         <image name="Twitter" width="1139" height="926"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -541,6 +606,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fQf-O0-ZZc"/>
+        <segue reference="fFV-KN-xcZ"/>
     </inferredMetricsTieBreakers>
 </document>
