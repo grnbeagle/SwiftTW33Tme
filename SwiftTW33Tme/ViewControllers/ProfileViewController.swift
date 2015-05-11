@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationItem.title = "Profile"
 
         user = User.currentUser

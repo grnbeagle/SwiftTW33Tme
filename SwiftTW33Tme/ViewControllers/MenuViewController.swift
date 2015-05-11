@@ -10,7 +10,11 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
-    var menuItems: [UIViewController]?
+    var menuItems: [[String: String]] = [
+        ["title": "Timeline"],
+        ["title": "Profile"],
+        ["title": "Log out"]
+    ]
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -42,21 +46,20 @@ class MenuViewController: UIViewController {
 }
 
 extension MenuViewController: UITableViewDelegate {
-
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var menu = menuItems[indexPath.row]
+        println("go to " + menu["title"]!)
+    }
 }
 
 extension MenuViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let menuItems = menuItems {
-            return menuItems.count
-        } else {
-            return 0
-        }
+        return menuItems.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
-        cell.textLabel?.text = "\(indexPath.row)" //self.menuItems[indexPath.row]
+        cell.textLabel?.text = menuItems[indexPath.row]["title"]
         return cell
     }
 }
