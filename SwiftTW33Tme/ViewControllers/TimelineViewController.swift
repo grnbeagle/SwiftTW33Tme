@@ -86,15 +86,18 @@ class TimelineViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var tweetViewController = segue.destinationViewController as? TweetViewController
         var navigationController = segue.destinationViewController as? UINavigationController
+
         if let tweetViewController = tweetViewController {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPathForCell(cell)!
+
             if tweets?.count > indexPath.row {
                 tweetViewController.tweet = tweets?[indexPath.row]
             }
         }
         if let navigationController = navigationController {
             var composeViewController = navigationController.topViewController as? ComposeViewController
+            var profileViewController = navigationController.topViewController as? ProfileViewController
             if let composeViewController = composeViewController {
                 let composeButton = sender as? UIBarButtonItem
                 if let composeButton = composeButton {
@@ -106,6 +109,12 @@ class TimelineViewController: UIViewController {
                     composeViewController.replyTo = replyTo!
                 }
                 composeViewController.delegate = self
+            } else if profileViewController != nil {
+                let imageView = sender as? UIImageView
+                if let imageView = imageView {
+                    var row = imageView.tag
+                    profileViewController!.user = tweets?[row].user
+                }
             }
         }
     }
@@ -129,6 +138,11 @@ extension TimelineViewController: UITableViewDataSource {
 
         cell.favoriteButton.tag = indexPath.row
         cell.favoriteButton.addTarget(self, action: "onFavoriteClicked:", forControlEvents: UIControlEvents.TouchDown)
+
+        var tapRecognizer = UITapGestureRecognizer(target: self, action: "onUserImageTap:")
+        cell.pictureView.addGestureRecognizer(tapRecognizer)
+        cell.pictureView.userInteractionEnabled = true
+        cell.pictureView.tag = indexPath.row
 
         if let tweets = tweets {
             if count(tweets) > indexPath.row {
@@ -214,6 +228,10 @@ extension TimelineViewController: UITableViewDataSource {
                 }
             }
         }
+    }
+
+    func onUserImageTap(tapGestureRecognizer: UITapGestureRecognizer) {
+        //self.performSegueWithIdentifier("timelineToProfile", sender: self)
     }
 }
 

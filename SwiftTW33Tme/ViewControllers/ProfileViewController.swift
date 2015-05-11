@@ -20,7 +20,9 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationItem.title = "Profile"
 
-        user = User.currentUser
+        if user == nil {
+            user = User.currentUser
+        }
 
         tableView.delegate = self
         tableView.dataSource = self

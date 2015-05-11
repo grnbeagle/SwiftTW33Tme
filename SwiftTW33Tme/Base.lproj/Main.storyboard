@@ -933,6 +933,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="aOa-qI-LnM" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="51P-YS-nh4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="edK-wY-XPN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
