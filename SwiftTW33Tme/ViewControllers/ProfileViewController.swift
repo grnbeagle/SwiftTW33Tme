@@ -18,10 +18,16 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "Profile"
+
         user = User.currentUser
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorInset = UIEdgeInsetsZero
+        tableView.layoutMargins = UIEdgeInsetsZero
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
 
         fetchData()
     }
@@ -33,7 +39,7 @@ class ProfileViewController: UIViewController {
 
     func fetchData() {
         var params = NSMutableDictionary()
-        params["screen_name"] = "\(user?.screenName)"
+        params["screen_name"] = "\(user?.screenName!)"
         TwitterClient.sharedInstance.timelineWithParams(params, completion: { (tweets, error) -> () in
             if let tweets = tweets {
                 self.tweets = tweets
@@ -66,9 +72,11 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             var cell = tableView.dequeueReusableCellWithIdentifier("StatsCell", forIndexPath: indexPath) as? StatsCell
+            cell?.setUser(user!)
             return cell!
         } else {
             var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as? TweetCell
+            cell!.frame = CGRectMake(0, 0, view.frame.width, 75)
             cell!.setTweet(tweets[indexPath.row])
             return cell!
         }
@@ -82,8 +90,8 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            var containerView = UIView(frame: CGRectMake(0, 0, view.frame.width, 155))
-            containerView.clipsToBounds = false
+            var containerView = UIView(frame: CGRectMake(0, 0, view.frame.width, 140))
+            containerView.clipsToBounds = true
 
             var profileCell = tableView.dequeueReusableCellWithIdentifier("ProfileCell") as? ProfileCell
             profileCell!.frame = containerView.frame
@@ -97,6 +105,6 @@ extension ProfileViewController: UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 150 : 0
+        return section == 0 ? 140 : 0
     }
 }

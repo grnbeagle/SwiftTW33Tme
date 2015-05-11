@@ -32,7 +32,7 @@ class ProfileCell: UITableViewCell {
 
     func setProfileUser(user: User) {
         nameLabel.text = user.name
-        screennameLabel.text = "@\(user.screenName)"
+        screennameLabel.text = "@\(user.screenName!)"
         var imageURL = NSURL(string: user.profileImageUrl!)
         userImageView.loadAsync(imageURL!, animate: true, failure: nil)
         if let bannerImageUrl = user.bannerImageUrl {
