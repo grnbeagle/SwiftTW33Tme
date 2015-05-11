@@ -10,10 +10,17 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
+    var menuItems: [UIViewController]?
+
+    @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
+
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,4 +39,24 @@ class MenuViewController: UIViewController {
     }
     */
 
+}
+
+extension MenuViewController: UITableViewDelegate {
+
+}
+
+extension MenuViewController: UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let menuItems = menuItems {
+            return menuItems.count
+        } else {
+            return 0
+        }
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        cell.textLabel?.text = "\(indexPath.row)" //self.menuItems[indexPath.row]
+        return cell
+    }
 }

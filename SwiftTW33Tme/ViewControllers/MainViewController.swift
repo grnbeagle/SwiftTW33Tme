@@ -32,10 +32,11 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         var homeViewController = mainStoryboard.instantiateViewControllerWithIdentifier("HomeScreen") as? UIViewController
+        var profileViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ProfileViewController") as? UIViewController
         containerViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ContainerViewController") as! ContainerViewController
 
 
-        viewControllers = [homeViewController!]
+        viewControllers = [homeViewController!, profileViewController!]
 
         containerViewController.viewControllers = viewControllers!
         view.addSubview(containerViewController.view)

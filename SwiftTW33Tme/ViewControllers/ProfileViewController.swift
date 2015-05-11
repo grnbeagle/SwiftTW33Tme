@@ -1,0 +1,102 @@
+//
+//  ProfileViewController.swift
+//  SwiftTW33Tme
+//
+//  Created by Amie Kweon on 5/10/15.
+//  Copyright (c) 2015 Rdio. All rights reserved.
+//
+
+import UIKit
+
+class ProfileViewController: UIViewController {
+
+    @IBOutlet weak var tableView: UITableView!
+
+    var tweets = [Tweet]()
+    var user: User?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        user = User.currentUser
+
+        tableView.delegate = self
+        tableView.dataSource = self
+
+        fetchData()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func fetchData() {
+        var params = NSMutableDictionary()
+        params["screen_name"] = "\(user?.screenName)"
+        TwitterClient.sharedInstance.timelineWithParams(params, completion: { (tweets, error) -> () in
+            if let tweets = tweets {
+                self.tweets = tweets
+                self.tableView.reloadData()
+            }
+        })
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return tweets.count
+        }
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            var cell = tableView.dequeueReusableCellWithIdentifier("StatsCell", forIndexPath: indexPath) as? StatsCell
+            return cell!
+        } else {
+            var cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as? TweetCell
+            cell!.setTweet(tweets[indexPath.row])
+            return cell!
+        }
+    }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2  // one for stat and another for tweets
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            var containerView = UIView(frame: CGRectMake(0, 0, view.frame.width, 155))
+            containerView.clipsToBounds = false
+
+            var profileCell = tableView.dequeueReusableCellWithIdentifier("ProfileCell") as? ProfileCell
+            profileCell!.frame = containerView.frame
+            profileCell!.setProfileUser(user!)
+
+            containerView.addSubview(profileCell!)
+            return containerView
+        } else {
+            return nil
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 150 : 0
+    }
+}

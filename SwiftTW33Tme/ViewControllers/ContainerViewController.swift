@@ -22,6 +22,8 @@ class ContainerViewController: UIViewController {
         //navigationController!.setViewControllers([viewControllers[0]], animated: false)
         displayContentController(viewControllers[0])
 
+        tabBarView.delegate = self
+
 //        var homeButton = UITabBarItem(title: "Timeline", image: UIImage(named:"Timeline"), tag: 0)
 //        var profileButton = UITabBarItem(title: "Profile", image: UIImage(named:"Profile"), tag: 1)
 //        tabBarView.setItems([homeButton, profileButton], animated: true)
@@ -47,5 +49,11 @@ class ContainerViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension ContainerViewController: UITabBarDelegate {
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        var selectedVC = self.viewControllers[item.tag]
+        displayContentController(selectedVC)
+    }
 }
