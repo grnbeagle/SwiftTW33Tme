@@ -43,9 +43,8 @@ class TimelineViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func onLogout(sender: AnyObject) {
-        User.currentUser?.logout()
+    @IBAction func onHamburgerTapped(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().postNotificationName("hamburgerTapped", object: nil)
     }
 
     func refresh() {

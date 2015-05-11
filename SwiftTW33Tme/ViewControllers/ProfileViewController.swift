@@ -48,6 +48,9 @@ class ProfileViewController: UIViewController {
         })
     }
 
+    @IBAction func onHamburgerTapped(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().postNotificationName("hamburgerTapped", object: nil)
+    }
     /*
     // MARK: - Navigation
 

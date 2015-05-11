@@ -13,6 +13,7 @@
 		53638EE01AFF4DF20085D548 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53638EDF1AFF4DF20085D548 /* ProfileViewController.swift */; };
 		53638EE21AFFFEF50085D548 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53638EE11AFFFEF50085D548 /* ProfileCell.swift */; };
 		53638EE41B00033D0085D548 /* StatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53638EE31B00033D0085D548 /* StatsCell.swift */; };
+		53638EE61B0066390085D548 /* NavPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53638EE51B0066390085D548 /* NavPersonCell.swift */; };
 		537379601AF34B47005DFD06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5373795F1AF34B47005DFD06 /* AppDelegate.swift */; };
 		537379651AF34B47005DFD06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537379631AF34B47005DFD06 /* Main.storyboard */; };
 		537379671AF34B47005DFD06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537379661AF34B47005DFD06 /* Images.xcassets */; };
@@ -49,6 +50,7 @@
 		53638EDF1AFF4DF20085D548 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		53638EE11AFFFEF50085D548 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		53638EE31B00033D0085D548 /* StatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsCell.swift; sourceTree = "<group>"; };
+		53638EE51B0066390085D548 /* NavPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavPersonCell.swift; sourceTree = "<group>"; };
 		5373795A1AF34B47005DFD06 /* SwiftTW33Tme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTW33Tme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373795E1AF34B47005DFD06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5373795F1AF34B47005DFD06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				537379921AF48AD2005DFD06 /* TweetCell.swift */,
 				53638EE11AFFFEF50085D548 /* ProfileCell.swift */,
 				53638EE31B00033D0085D548 /* StatsCell.swift */,
+				53638EE51B0066390085D548 /* NavPersonCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				537379891AF36847005DFD06 /* Tweet.swift in Sources */,
 				537379841AF34C0E005DFD06 /* TwitterClient.swift in Sources */,
 				5377E81E1AF4C76A0053EDD7 /* ComposeViewController.swift in Sources */,
+				53638EE61B0066390085D548 /* NavPersonCell.swift in Sources */,
 				5377E81B1AF4B52F0053EDD7 /* UIColor+App.swift in Sources */,
 				537379601AF34B47005DFD06 /* AppDelegate.swift in Sources */,
 				53638EE01AFF4DF20085D548 /* ProfileViewController.swift in Sources */,

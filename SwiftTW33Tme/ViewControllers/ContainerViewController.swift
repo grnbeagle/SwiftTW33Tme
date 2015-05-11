@@ -19,14 +19,11 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //navigationController!.setViewControllers([viewControllers[0]], animated: false)
         displayContentController(viewControllers[0])
 
         tabBarView.delegate = self
 
-//        var homeButton = UITabBarItem(title: "Timeline", image: UIImage(named:"Timeline"), tag: 0)
-//        var profileButton = UITabBarItem(title: "Profile", image: UIImage(named:"Profile"), tag: 1)
-//        tabBarView.setItems([homeButton, profileButton], animated: true)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuSelected:", name: "menuSelected", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +35,15 @@ class ContainerViewController: UIViewController {
         addChildViewController(content)
         containerView.addSubview(content.view)
         content.didMoveToParentViewController(self)
+    }
+
+    func menuSelected(notification: NSNotification) {
+        if notification.name == "menuSelected" {
+            var destinationViewController = notification.object as? UIViewController
+            if let destinationVC = destinationViewController {
+                displayContentController(destinationVC)
+            }
+        }
     }
 
     /*

@@ -21,10 +21,11 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.backgroundColor = UIColor.tweetmeLightGrayColor()
         tableView.dataSource = self
         tableView.delegate = self
-
-
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 30
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +48,14 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var menu = menuItems[indexPath.row]
-        println("go to " + menu["title"]!)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        NSNotificationCenter.defaultCenter().postNotificationName("menuSelected", object: indexPath.row)
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var personCell = tableView.dequeueReusableCellWithIdentifier("NavPersonCell") as? NavPersonCell
+        personCell!.setPerson(User.currentUser!)
+        return personCell
     }
 }
 
@@ -60,6 +67,15 @@ extension MenuViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         cell.textLabel?.text = menuItems[indexPath.row]["title"]
+        cell.backgroundColor = UIColor.tweetmeLightGrayColor()
         return cell
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 105
+    }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
 }

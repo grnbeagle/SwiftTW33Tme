@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     var viewControllers: [UIViewController]?
     var panStartCoordinate: CGPoint?
     var direction = "right"
+    var showingMenu = false
 
     var menuView: UIView {
         if menuViewController == nil {
@@ -43,10 +44,12 @@ class MainViewController: UIViewController {
         addChildViewController(containerViewController)
         containerViewController.didMoveToParentViewController(self)
 
-
         var panGesture = UIPanGestureRecognizer(target: self, action: "onPan:")
         panGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(panGesture)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuSelected:", name: "menuSelected", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "hamburgerTapped:", name: "hamburgerTapped", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,26 +77,55 @@ class MainViewController: UIViewController {
         case .Ended:
             println("ended")
             if direction == "R" {
-                var x: CGFloat = view.frame.size.width - 80
-                UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                    self.containerViewController.view.frame = CGRect(x: x, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-                }, completion: { (finished) -> Void in
-                    //
-                })
+                var x: CGFloat = view.frame.size.width - 150
+                slideContainerBy(x)
             } else {
                 var x: CGFloat = 0
-                UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
-                    self.containerViewController.view.frame = CGRect(x: x, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-                    }, completion: { (finished) -> Void in
-                        //
-                })
+                slideContainerBy(x)
             }
         default:
             println("\(gestureRecognizer.state)")
         }
     }
 
+    func slideContainerBy(distance: CGFloat) {
+        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+            self.containerViewController.view.frame = CGRect(x: distance, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+            }, completion: { (finished) -> Void in
+                self.showingMenu = distance > 0
+        })
+    }
 
+    func menuSelected(notification: NSNotification) {
+        if notification.name == "menuSelected" {
+            slideContainerBy(0)
+            var index = notification.object as? Int
+            if let index = index {
+                if index < 2 {
+                    var viewController = viewControllers![index]
+                    containerViewController.displayContentController(viewController)
+                } else if index == 2 {
+                    User.currentUser?.logout()
+                }
+            }
+        }
+    }
+
+    func hamburgerTapped(notification: NSNotification) {
+        if notification.name == "hamburgerTapped" {
+            toggleMenu()
+        }
+    }
+
+    func toggleMenu() {
+        if showingMenu {
+            slideContainerBy(0)
+        } else {
+            self.view.sendSubviewToBack(menuView)
+            var x: CGFloat = view.frame.size.width - 150
+            slideContainerBy(x)
+        }
+    }
     /*
     // MARK: - Navigation
 

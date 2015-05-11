@@ -18,6 +18,8 @@ class StatsCell: UITableViewCell {
     @IBOutlet weak var friendsLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
 
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
