@@ -24,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil {
             println("Current user detected")
 
-            //var vc = storyboard.instantiateViewControllerWithIdentifier("HomeScreen") as? UIViewController
-            //window?.rootViewController = vc!
             var mainViewController = MainViewController()
             window?.rootViewController = mainViewController
         }
