@@ -86,7 +86,6 @@ class TimelineViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var tweetViewController = segue.destinationViewController as? TweetViewController
         var navigationController = segue.destinationViewController as? UINavigationController
-
         if let tweetViewController = tweetViewController {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPathForCell(cell)!
@@ -109,11 +108,12 @@ class TimelineViewController: UIViewController {
                     composeViewController.replyTo = replyTo!
                 }
                 composeViewController.delegate = self
-            } else if profileViewController != nil {
+            } else if let profileViewController = profileViewController {
                 let imageView = sender as? UIImageView
                 if let imageView = imageView {
                     var row = imageView.tag
-                    profileViewController!.user = tweets?[row].user
+                    profileViewController.fromTimeline = true
+                    profileViewController.user = tweets?[row].user
                 }
             }
         }
@@ -231,7 +231,7 @@ extension TimelineViewController: UITableViewDataSource {
     }
 
     func onUserImageTap(tapGestureRecognizer: UITapGestureRecognizer) {
-        //self.performSegueWithIdentifier("timelineToProfile", sender: self)
+        self.performSegueWithIdentifier("timelineToProfile", sender: tapGestureRecognizer.view)
     }
 }
 

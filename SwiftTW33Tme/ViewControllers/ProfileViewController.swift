@@ -14,15 +14,16 @@ class ProfileViewController: UIViewController {
 
     var tweets = [Tweet]()
     var user: User?
+    var fromTimeline = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        navigationItem.title = "Profile"
 
         if user == nil {
             user = User.currentUser
         }
+        navigationItem.title = "\(user!.name!)"
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -32,6 +33,11 @@ class ProfileViewController: UIViewController {
         tableView.estimatedRowHeight = 120
 
         fetchData()
+
+        if fromTimeline {
+            var backButton = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: "onCloseTapped")
+            self.navigationItem.leftBarButtonItem = backButton
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,10 +45,14 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func onCloseTapped() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     func fetchData() {
         var params = NSMutableDictionary()
-        params["screen_name"] = "\(user?.screenName!)"
-        TwitterClient.sharedInstance.timelineWithParams(params, completion: { (tweets, error) -> () in
+        params["screen_name"] = "\(user!.screenName!)"
+        TwitterClient.sharedInstance.userTimelineWithParams(params, completion: { (tweets, error) -> () in
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()

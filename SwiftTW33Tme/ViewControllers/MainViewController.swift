@@ -48,7 +48,7 @@ class MainViewController: UIViewController {
         panGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(panGesture)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuSelected:", name: "menuSelected", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "menuSelected:", name: "menuSelectedByTag", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "hamburgerTapped:", name: "hamburgerTapped", object: nil)
     }
 
@@ -97,7 +97,7 @@ class MainViewController: UIViewController {
     }
 
     func menuSelected(notification: NSNotification) {
-        if notification.name == "menuSelected" {
+        if notification.name == "menuSelectedByTag" {
             slideContainerBy(0)
             var index = notification.object as? Int
             if let index = index {

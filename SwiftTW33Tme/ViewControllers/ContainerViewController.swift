@@ -37,6 +37,12 @@ class ContainerViewController: UIViewController {
         content.didMoveToParentViewController(self)
     }
 
+    func removeContentController(content: UIViewController) {
+        content.willMoveToParentViewController(nil)
+        content.view.removeFromSuperview()
+        content.removeFromParentViewController()
+    }
+
     func menuSelected(notification: NSNotification) {
         if notification.name == "menuSelected" {
             var destinationViewController = notification.object as? UIViewController

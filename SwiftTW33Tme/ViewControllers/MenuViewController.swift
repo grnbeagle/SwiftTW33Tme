@@ -49,7 +49,7 @@ class MenuViewController: UIViewController {
 extension MenuViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        NSNotificationCenter.defaultCenter().postNotificationName("menuSelected", object: indexPath.row)
+        NSNotificationCenter.defaultCenter().postNotificationName("menuSelectedByTag", object: indexPath.row)
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

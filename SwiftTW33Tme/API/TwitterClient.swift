@@ -8,13 +8,13 @@
 
 import UIKit
 
-//let twitterConsumerKey = "tl2Av403xlyFF1MsPsAoXKA7Q"
-//let twitterConsumerSecret = "DBm4OMnrVHKVNIeQsLr88cNvQBIPjSeyy0kZDiwNXDNB9A1lHv"
-//let twitterURL = NSURL(string: "https://api.twitter.com")
-
-let twitterConsumerKey = "rsofhkUa3oEiNSj8KkRCuDLNr"
-let twitterConsumerSecret = "26xmmRTmSgy3sBbbmSl4xUciwW35F8KYjfLLrsBWfWuqsSAsud"
+let twitterConsumerKey = "tl2Av403xlyFF1MsPsAoXKA7Q"
+let twitterConsumerSecret = "DBm4OMnrVHKVNIeQsLr88cNvQBIPjSeyy0kZDiwNXDNB9A1lHv"
 let twitterURL = NSURL(string: "https://api.twitter.com")
+
+//let twitterConsumerKey = "rsofhkUa3oEiNSj8KkRCuDLNr"
+//let twitterConsumerSecret = "26xmmRTmSgy3sBbbmSl4xUciwW35F8KYjfLLrsBWfWuqsSAsud"
+//let twitterURL = NSURL(string: "https://api.twitter.com")
 
 
 class TwitterClient: BDBOAuth1RequestOperationManager {
@@ -62,6 +62,17 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
 
     func timelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
         GET("1.1/statuses/home_timeline.json?include_my_retweet=1", parameters: params,
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+                completion(tweets: tweets, error: nil)
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("error: \(error)")
+                completion(tweets: nil, error: error)
+        })
+    }
+
+    func userTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+        GET("1.1/statuses/user_timeline.json", parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
                 var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
                 completion(tweets: tweets, error: nil)
