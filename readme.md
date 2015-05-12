@@ -2,7 +2,7 @@
 
 This is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 
+Time spent: 10 hours
 
 ## Part 2
 
@@ -23,6 +23,11 @@ Time spent:
   - [ ] Tap account to switch to
   - [ ] Include a plus button to Add an Account
   - [ ] Swipe to delete an account
+
+### Walkthrough
+
+![Video Walkthrough](SwiftTW33Tme-part2.gif)
+
 
 ## Part 1
 

@@ -12,11 +12,6 @@ let twitterConsumerKey = "tl2Av403xlyFF1MsPsAoXKA7Q"
 let twitterConsumerSecret = "DBm4OMnrVHKVNIeQsLr88cNvQBIPjSeyy0kZDiwNXDNB9A1lHv"
 let twitterURL = NSURL(string: "https://api.twitter.com")
 
-//let twitterConsumerKey = "rsofhkUa3oEiNSj8KkRCuDLNr"
-//let twitterConsumerSecret = "26xmmRTmSgy3sBbbmSl4xUciwW35F8KYjfLLrsBWfWuqsSAsud"
-//let twitterURL = NSURL(string: "https://api.twitter.com")
-
-
 class TwitterClient: BDBOAuth1RequestOperationManager {
 
     var loginCompletion: ((user: User?, error: NSError?) -> ())?
